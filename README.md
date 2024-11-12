@@ -25,6 +25,8 @@ Here you can find information about the [OpenAI API](https://openai.com/index/op
 
 If you don't have `concurrently` installed, you need to install it:  
 `npm install concurrently --save-dev`
+If you find some problem in this stage, run:
+`npm audit fix`
 
 Run the following command to start the tool:  
 `npm run dev`
