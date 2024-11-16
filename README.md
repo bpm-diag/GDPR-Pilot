@@ -28,7 +28,7 @@ If you don't have `concurrently` installed, you need to install it:
 If you find some problem in this stage, run:
 `npm audit fix`
 
-Run the following command to start the tool:  
+Run the following command from the root directory "GDPR-Pilot" to start the tool:  
 `npm run dev`
 
 ## Contributions
