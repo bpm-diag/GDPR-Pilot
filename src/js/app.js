@@ -259,21 +259,23 @@ export async function callChatGpt(message) {
         // Rate limit error
         const retryAfter = error.response.headers["retry-after-ms"] || 3000; // Default to 3 seconds if not provided
         console.log(`Rate limit exceeded. Retrying after ${retryAfter}ms`);
-        displayDynamicAlert(
-          "Something went wrong with the LLM predictions. Please try again later.",
-          "danger",
-          3000
-        );
+        if (localStorage.getItem("flag_per_llm") != "true")
+          displayDynamicAlert(
+            "Something went wrong with the LLM predictions. Please try again later.",
+            "danger",
+            3000
+          );
         await new Promise((resolve) => setTimeout(resolve, retryAfter));
         return makeRequest(retryCount + 1);
       } else {
         // Other errors or max retries exceeded
         console.error("There was a problem with the request:", error);
-        displayDynamicAlert(
-          "Something went wrong with the LLM predictions. Please try again later.",
-          "danger",
-          3000
-        );
+        if (localStorage.getItem("flag_per_llm") != "true")
+          displayDynamicAlert(
+            "Something went wrong with the LLM predictions. Please try again later.",
+            "danger",
+            3000
+          );
         throw error;
       }
     }

@@ -1274,6 +1274,9 @@ export async function getSettedActivity(question) {
 //
 
 export function displayDynamicAlert(message, type, time) {
+  if (message.includes("LLM")) {
+    localStorage.setItem("flag_per_llm", "true");
+  }
   const alertContainer = document.getElementById("alertContainer");
   const alertDiv = document.createElement("div");
   alertDiv.className = `alert alert-${type} alert-dismissible fade show`;
@@ -1288,7 +1291,6 @@ export function displayDynamicAlert(message, type, time) {
     alertDiv.style.boxShadow =
       "0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1)";
   }
-
   alertDiv.innerHTML =
     start +
     `
@@ -1302,6 +1304,7 @@ export function displayDynamicAlert(message, type, time) {
   alertContainer.appendChild(alertDiv);
   setTimeout(() => {
     alertDiv.remove();
+    localStorage.setItem("flag_per_llm", "false");
   }, time);
 }
 
